@@ -14,7 +14,7 @@ source:
 build:
   skip: true  # [not osx]
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   build:
