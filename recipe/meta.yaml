@@ -1,5 +1,5 @@
 {% set name = "pyobjc-framework-SystemConfiguration" %}
-{% set version = "9.2" %}
+{% set version = "10.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,14 +7,14 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyobjc-framework-SystemConfiguration-{{ version }}.tar.gz
-  sha256: 0473a97d66ff0937df8f8d2c7109edc6ca8797d711d727823b296f0cff9878fb
+  sha256: f9ab1759933c77688615810f8278519158273a658f11fc3d75a1a2446fd0f774
   #patches:
     #- patches/0001-Remove-werror-from-compile-flags.patch
 
 build:
   skip: true  # [not osx]
   script: {{ PYTHON }} -m pip install . -vv
-  number: 2
+  number: 0
 
 requirements:
   build:
