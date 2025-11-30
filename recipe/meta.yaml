@@ -1,5 +1,5 @@
 {% set name = "pyobjc-framework-SystemConfiguration" %}
-{% set version = "12.1" %}
+{% set version = "12.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,14 +7,19 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name.replace('-', '_').lower() }}/{{ name.replace('-', '_').lower() }}-{{ version }}.tar.gz
-  sha256: 90fe04aa059876a21626931c71eaff742a27c79798a46347fd053d7008ec496e
+  sha256: 441738af5663127e0bce23771ddaac25c891c0b09c22254b10a1de0933ed2ca2
   #patches:
     #- patches/0001-Remove-werror-from-compile-flags.patch
 
 build:
-  skip: true  # [not osx]
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
+  script:
+    # force pyobjc to use conda-forge's chosen SDK
+    - export CFLAGS="${CFLAGS} -isysroot ${SDKROOT:-$CONDA_BUILD_SYSROOT}"
+    # force ignoring invalid compiler flag (-Wl,-export-dynamic)
+    - export CFLAGS="${CFLAGS} -Wno-unused-command-line-argument"  # [py == 37 or py == 38]
+    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: true  # [(not osx) or py2k or python_impl == 'pypy' or (arm64 and py < 39)]
 
 requirements:
   build:
