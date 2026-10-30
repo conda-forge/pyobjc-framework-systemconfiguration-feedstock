@@ -1,5 +1,5 @@
 {% set name = "pyobjc-framework-SystemConfiguration" %}
-{% set version = "12.2.2" %}
+{% set version = "13.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name.replace('-', '_').lower() }}/{{ name.replace('-', '_').lower() }}-{{ version }}.tar.gz
-  sha256: 9a82d5a1214e49697843f39e72718a5d606378999e94b5b4591bd429bb8e6ada
+  sha256: 8e3a0e33cd78f0161a4fc1bc79a66013c9877c2cea5dd708df4c6e8888b4df17
   #patches:
     #- patches/0001-Remove-werror-from-compile-flags.patch
 
