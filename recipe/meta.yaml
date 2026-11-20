@@ -12,7 +12,7 @@ source:
     #- patches/0001-Remove-werror-from-compile-flags.patch
 
 build:
-  number: 0
+  number: 1
   script:
     # force pyobjc to use conda-forge's chosen SDK
     - export CFLAGS="${CFLAGS} -isysroot ${SDKROOT:-$CONDA_BUILD_SYSROOT}"
